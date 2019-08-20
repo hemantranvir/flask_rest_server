@@ -2,7 +2,7 @@
 from marshmallow import fields, Schema
 import datetime
 from . import db, bcrypt
-from sqlalchemy import asc
+from sqlalchemy import desc
 
 class CustomerModel(db.Model):
   # table name
@@ -41,7 +41,7 @@ class CustomerModel(db.Model):
 
   @staticmethod
   def get_n_youngest_customers(n):
-    qry = CustomerModel.query.order_by(asc(CustomerModel.dob)).limit(n).all()
+    qry = CustomerModel.query.order_by(desc(CustomerModel.dob)).limit(n).all()
     return qry
 
   @staticmethod
